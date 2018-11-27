@@ -1,0 +1,35 @@
+{
+  "name": "@uxland/uxl-rich-text-editor",
+  "version": "0.0.0-development",
+  "description": "uxl-rich-text-editor",
+  "main": "uxl-rich-text-editor.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uxland/uxl-rich-text-editor.git"
+  },
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer"
+  ],
+  "author": "UXLand",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/uxland/uxl-rich-text-editor/issues"
+  },
+  "homepage": "https://github.com/uxland/uxl-rich-text-editor",
+  "files": [
+    "vaadin-*.js",
+    "src",
+    "vendor",
+    "theme"
+  ],
+  "scripts": {
+    "test": "wct",
+    "preversion": "gulp version:update"
+  },
+  "devDependencies": {
+    "@vaadin/vaadin-component-dev-dependencies": "^1.0.0",
+    "gulp-iconfont": "^10.0.1"
+  }
+}

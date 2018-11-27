@@ -1,0 +1,32 @@
+language: node_js
+cache:
+  directories:
+  - "~/.npm"
+dist: trusty
+sudo: required
+notifications:
+  email: false
+node_js: 10
+addons:
+  chrome: stable
+before_script:
+- npm i -g polymer-cli
+script:
+- npm run build
+after_success:
+- gulp dist
+branches:
+  except:
+  - "/^v\\d+\\.\\d+\\.\\d+$/"
+before_install:
+- npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
+deploy:
+  provider: script
+  script:
+  - npx semantic-release
+  email: dev@uxland.es
+  api_key: "${NPM_TOKEN}"
+  skip_cleanup: true
+env:
+  global:
+    secure: P1U1dvSNY7n6H5O+gLHkxoPwaG6s3yT1E/hr2oJMgNOAVrSox5S9PAckZGCWw7f9Z2leauQxsgANyCk3MZoFb/QOsX7Hwt0mJXwh38bsJAHaleAFeX20iN0rQBa9IQzUHfhKiba+gsPMoyRBlVyfPagIxCNDhayh8gvtOJXACnsg55Hi/4Ez2DaA0v+zQeJA7g/XD8BQ9bmvwz0k5yYzXUs9Nfw9qCY48yrWhYfYPExYJu81DuYrR3zqCz8n/zO7o07RfDEGtGIYAS5iIX/qsooyGorEgzz3J7AwG8ZjEpyhmsEsGyEGS3K5Uckot5a0AksUPa9aOq9Rp20xA3q9GeGTBXFZktVzhHMM1xoYL4SnFts9sbhog76RDXHch/oMf1APJNjxm4gHfdtUy9VILPvvsgBom471DUHcgSvrdjTwdl/spDyvXXbFZ+NOAnSJDtOj34d7IXg6A+0mihYUATxVBtt4OsgT88RSEggeqMhFXzkedUxNr7tEju5lG+IR28KLcemgSBJn8u+HgxdY7hZNblAHEnlX4Z/tzjrqtFMI+uvDcexBu2gMCnDwfD+htg+4Td7zuMYR6ji6xCBUNCeqw+K8WrjAU4GCNQiMWZPMYsRuSYu8cGWUIwQ9ltamxV3I74RbfLHVFFtEekjyz2hpaScsbok75fGlkxp6k1w=
