@@ -9,6 +9,8 @@ notifications:
 node_js: 10
 addons:
   chrome: stable
+before_script:
+  - npm i -g polymer-cli
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
