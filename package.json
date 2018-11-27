@@ -25,7 +25,6 @@
     "theme"
   ],
   "scripts": {
-    "test": "wct",
     "preversion": "gulp version:update"
   },
   "devDependencies": {
