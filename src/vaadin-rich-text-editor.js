@@ -306,7 +306,7 @@ class RichTextEditorElement extends ElementMixin(ThemableMixin(PolymerElement)) 
         value: null
       },
 
-      _linkUrl: {
+      _link_linkUrl: {
         type: String,
         value: ''
       }
@@ -560,89 +560,6 @@ class RichTextEditorElement extends ElementMixin(ThemableMixin(PolymerElement)) 
     if (this.__lastCommittedChange !== this.value) {
       this.dispatchEvent(new CustomEvent('change', {bubbles: true, cancelable: false}));
       this.__lastCommittedChange = this.value;
-    }
-  }
-
-  _onLinkClick() {
-    const range = this._editor.getSelection();
-    if (range) {
-      const LinkBlot = Quill.imports['formats/link'];
-      const [link, offset] = this._editor.scroll.descendant(LinkBlot, range.index);
-      if (link != null) {
-        // existing link
-        this._linkRange = {index: range.index - offset, length: link.length()};
-        this._linkUrl = LinkBlot.formats(link.domNode);
-      } else if (range.length === 0) {
-        this._linkIndex = range.index;
-      }
-      this._linkEditing = true;
-    }
-  }
-
-  _applyLink(link) {
-    if (link) {
-      this._markToolbarClicked();
-      this._editor.format('link', link, SOURCE.USER);
-      this._editor.getModule('toolbar').update(this._editor.selection.savedRange);
-    }
-    this._closeLinkDialog();
-  }
-
-  _insertLink(link, position) {
-    if (link) {
-      this._markToolbarClicked();
-      this._editor.insertText(position, link, {link});
-      this._editor.setSelection(position, link.length);
-    }
-    this._closeLinkDialog();
-  }
-
-  _updateLink(link, range) {
-    this._markToolbarClicked();
-    this._editor.formatText(range, 'link', link, SOURCE.USER);
-    this._closeLinkDialog();
-  }
-
-  _removeLink() {
-    this._markToolbarClicked();
-    if (this._linkRange != null) {
-      this._editor.formatText(this._linkRange, {link: false, color: false}, SOURCE.USER);
-    }
-    this._closeLinkDialog();
-  }
-
-  _closeLinkDialog() {
-    this._linkEditing = false;
-    this._linkUrl = '';
-    this._linkIndex = null;
-    this._linkRange = null;
-  }
-
-  _onLinkEditConfirm() {
-    if (this._linkIndex != null) {
-      this._insertLink(this._linkUrl, this._linkIndex);
-    } else if (this._linkRange) {
-      this._updateLink(this._linkUrl, this._linkRange);
-    } else {
-      this._applyLink(this._linkUrl);
-    }
-  }
-
-  _onLinkEditCancel() {
-    this._closeLinkDialog();
-    this._editor.focus();
-  }
-
-  _onLinkEditRemove() {
-    this._removeLink();
-    this._closeLinkDialog();
-  }
-
-  _onLinkKeydown(e) {
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      e.stopPropagation();
-      this.$.confirmLink.click();
     }
   }
 
