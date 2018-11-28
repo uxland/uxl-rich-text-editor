@@ -187,19 +187,6 @@ class RichTextEditorElement extends ElementMixin(ThemableMixin(PolymerElement)) 
       <div class="announcer" aria-live="polite"></div>
 
     </div>
-
-    <vaadin-confirm-dialog id="linkDialog" opened="{{_linkEditing}}" header="[[i18n.linkDialogTitle]]">
-      <vaadin-text-field id="linkUrl" value="{{_linkUrl}}" style="width: 100%;" on-keydown="_onLinkKeydown"></vaadin-text-field>
-      <vaadin-button id="confirmLink" slot="confirm-button" theme="primary" on-click="_onLinkEditConfirm">
-        [[i18n.ok]]
-      </vaadin-button>
-      <vaadin-button id="removeLink" slot="reject-button" theme="error" on-click="_onLinkEditRemove" hidden\$="[[!_linkRange]]">
-        [[i18n.remove]]
-      </vaadin-button>
-      <vaadin-button id="cancelLink" slot="cancel-button" on-click="_onLinkEditCancel">
-        [[i18n.cancel]]
-      </vaadin-button>
-    </vaadin-confirm-dialog>
 `;
   }
 
