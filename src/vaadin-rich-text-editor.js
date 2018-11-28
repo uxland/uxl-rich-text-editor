@@ -13,6 +13,7 @@ import '@vaadin/vaadin-button/src/vaadin-button.js';
 import '@vaadin/vaadin-confirm-dialog/src/vaadin-confirm-dialog.js';
 import '@vaadin/vaadin-text-field/src/vaadin-text-field.js';
 import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
+import '@vaadin/vaadin-license-checker/vaadin-license-checker.js';
 import '../vendor/vaadin-quill.js';
 import './vaadin-rich-text-editor-styles.js';
 import './vaadin-rich-text-editor-toolbar-styles.js';
@@ -148,28 +149,77 @@ class RichTextEditorElement extends ElementMixin(ThemableMixin(PolymerElement)) 
     </style>
 
     <div class="vaadin-rich-text-editor-container">
+
+      <!-- Create toolbar container -->
       <div part="toolbar">
+
         <span part="toolbar-group">
+          <!-- Undo and Redo -->
           <button type="button" part="toolbar-button toolbar-button-undo" on-click="_undo" title\$="[[i18n.undo]]"></button>
           <button type="button" part="toolbar-button toolbar-button-redo" on-click="_redo" title\$="[[i18n.redo]]"></button>
         </span>
+
         <span part="toolbar-group">
+          <!-- Bold -->
           <button class="ql-bold" part="toolbar-button toolbar-button-bold" title\$="[[i18n.bold]]"></button>
+
+          <!-- Italic -->
           <button class="ql-italic" part="toolbar-button toolbar-button-italic" title\$="[[i18n.italic]]"></button>
+
+          <!-- Underline -->
           <button class="ql-underline" part="toolbar-button toolbar-button-underline" title\$="[[i18n.underline]]"></button>
+
+          <!-- Strike -->
+          <button class="ql-strike" part="toolbar-button toolbar-button-strike" title\$="[[i18n.strike]]"></button>
         </span>
+
         <span part="toolbar-group">
+          <!-- Header buttons -->
+          <button type="button" class="ql-header" value="1" part="toolbar-button toolbar-button-h1" title\$="[[i18n.h1]]"></button>
+          <button type="button" class="ql-header" value="2" part="toolbar-button toolbar-button-h2" title\$="[[i18n.h2]]"></button>
+          <button type="button" class="ql-header" value="3" part="toolbar-button toolbar-button-h3" title\$="[[i18n.h3]]"></button>
+        </span>
+
+        <span part="toolbar-group">
+          <!-- Subscript and superscript -->
+          <button class="ql-script" value="sub" part="toolbar-button toolbar-button-subscript" title\$="[[i18n.subscript]]"></button>
+          <button class="ql-script" value="super" part="toolbar-button toolbar-button-superscript" title\$="[[i18n.superscript]]"></button>
+        </span>
+
+        <span part="toolbar-group">
+          <!-- List buttons -->
           <button type="button" class="ql-list" value="ordered" part="toolbar-button toolbar-button-list-ordered" title\$="[[i18n.listOrdered]]"></button>
           <button type="button" class="ql-list" value="bullet" part="toolbar-button toolbar-button-list-bullet" title\$="[[i18n.listBullet]]"></button>
         </span>
+
         <span part="toolbar-group">
+          <!-- Align buttons -->
           <button type="button" class="ql-align" value="" part="toolbar-button toolbar-button-align-left" title\$="[[i18n.alignLeft]]"></button>
           <button type="button" class="ql-align" value="center" part="toolbar-button toolbar-button-align-center" title\$="[[i18n.alignCenter]]"></button>
           <button type="button" class="ql-align" value="right" part="toolbar-button toolbar-button-align-right" title\$="[[i18n.alignRight]]"></button>
         </span>
+
         <span part="toolbar-group">
+          <!-- Image -->
+          <button type="button" part="toolbar-button toolbar-button-image" title\$="[[i18n.image]]" on-touchend="_onImageTouchEnd" on-click="_onImageClick"></button>
+          <!-- Link -->
+          <button type="button" part="toolbar-button toolbar-button-link" title\$="[[i18n.link]]" on-click="_onLinkClick"></button>
+        </span>
+
+        <span part="toolbar-group">
+          <!-- Blockquote -->
+          <button type="button" class="ql-blockquote" part="toolbar-button toolbar-button-blockquote" title\$="[[i18n.blockquote]]"></button>
+
+          <!-- Code block -->
+          <button type="button" class="ql-code-block" part="toolbar-button toolbar-button-code-block" title\$="[[i18n.codeBlock]]"></button>
+        </span>
+
+        <span part="toolbar-group">
+          <!-- Clean -->
           <button type="button" class="ql-clean" part="toolbar-button toolbar-button-clean" title\$="[[i18n.clean]]"></button>
         </span>
+
+        <input id="fileInput" type="file" accept="image/png, image/gif, image/jpeg, image/bmp, image/x-icon" on-change="_uploadImage">
       </div>
 
       <div part="content"></div>
@@ -177,6 +227,19 @@ class RichTextEditorElement extends ElementMixin(ThemableMixin(PolymerElement)) 
       <div class="announcer" aria-live="polite"></div>
 
     </div>
+
+    <vaadin-confirm-dialog id="linkDialog" opened="{{_linkEditing}}" header="[[i18n.linkDialogTitle]]">
+      <vaadin-text-field id="linkUrl" value="{{_linkUrl}}" style="width: 100%;" on-keydown="_onLinkKeydown"></vaadin-text-field>
+      <vaadin-button id="confirmLink" slot="confirm-button" theme="primary" on-click="_onLinkEditConfirm">
+        [[i18n.ok]]
+      </vaadin-button>
+      <vaadin-button id="removeLink" slot="reject-button" theme="error" on-click="_onLinkEditRemove" hidden\$="[[!_linkRange]]">
+        [[i18n.remove]]
+      </vaadin-button>
+      <vaadin-button id="cancelLink" slot="cancel-button" on-click="_onLinkEditCancel">
+        [[i18n.cancel]]
+      </vaadin-button>
+    </vaadin-confirm-dialog>
 `;
   }
 
