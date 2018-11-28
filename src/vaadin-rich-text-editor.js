@@ -193,33 +193,13 @@ class RichTextEditorElement extends ElementMixin(ThemableMixin(PolymerElement)) 
         </span>
 
         <span part="toolbar-group">
-          <!-- Align buttons -->
           <button type="button" class="ql-align" value="" part="toolbar-button toolbar-button-align-left" title\$="[[i18n.alignLeft]]"></button>
           <button type="button" class="ql-align" value="center" part="toolbar-button toolbar-button-align-center" title\$="[[i18n.alignCenter]]"></button>
           <button type="button" class="ql-align" value="right" part="toolbar-button toolbar-button-align-right" title\$="[[i18n.alignRight]]"></button>
         </span>
-
         <span part="toolbar-group">
-          <!-- Image -->
-          <button type="button" part="toolbar-button toolbar-button-image" title\$="[[i18n.image]]" on-touchend="_onImageTouchEnd" on-click="_onImageClick"></button>
-          <!-- Link -->
-          <button type="button" part="toolbar-button toolbar-button-link" title\$="[[i18n.link]]" on-click="_onLinkClick"></button>
-        </span>
-
-        <span part="toolbar-group">
-          <!-- Blockquote -->
-          <button type="button" class="ql-blockquote" part="toolbar-button toolbar-button-blockquote" title\$="[[i18n.blockquote]]"></button>
-
-          <!-- Code block -->
-          <button type="button" class="ql-code-block" part="toolbar-button toolbar-button-code-block" title\$="[[i18n.codeBlock]]"></button>
-        </span>
-
-        <span part="toolbar-group">
-          <!-- Clean -->
           <button type="button" class="ql-clean" part="toolbar-button toolbar-button-clean" title\$="[[i18n.clean]]"></button>
         </span>
-
-        <input id="fileInput" type="file" accept="image/png, image/gif, image/jpeg, image/bmp, image/x-icon" on-change="_uploadImage">
       </div>
 
       <div part="content"></div>
