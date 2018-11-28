@@ -834,8 +834,8 @@ customElements.define(RichTextEditorElement.is, RichTextEditorElement);
 
 export { RichTextEditorElement };
 
-const devModeCallback = window.Vaadin.developmentModeCallback;
-const licenseChecker = devModeCallback && devModeCallback['vaadin-license-checker'];
-if (typeof licenseChecker === 'function') {
-  licenseChecker(RichTextEditorElement);
-}
+// const devModeCallback = window.Vaadin.developmentModeCallback;
+// const licenseChecker = devModeCallback && devModeCallback['vaadin-license-checker'];
+// if (typeof licenseChecker === 'function') {
+//   licenseChecker(RichTextEditorElement);
+// }
