@@ -26,13 +26,9 @@ const HANDLERS = [
   'bold',
   'italic',
   'underline',
-  'strike',
   'header',
-  'script',
   'list',
   'align',
-  'blockquote',
-  'code-block'
 ];
 
 const SOURCE = {
@@ -279,23 +275,15 @@ class RichTextEditorElement extends ElementMixin(ThemableMixin(PolymerElement)) 
             bold: 'bold',
             italic: 'italic',
             underline: 'underline',
-            strike: 'strike',
-            h1: 'h1',
-            h2: 'h2',
-            h3: 'h3',
-            subscript: 'subscript',
-            superscript: 'superscript',
+
             listOrdered: 'list ordered',
             listBullet: 'list bullet',
             alignLeft: 'align left',
             alignCenter: 'align center',
             alignRight: 'align right',
-            image: 'image',
-            link: 'link',
-            blockquote: 'blockquote',
-            codeBlock: 'code block',
+
             clean: 'clean',
-            linkDialogTitle: 'Link address',
+
             ok: 'OK',
             cancel: 'Cancel',
             remove: 'Remove'
