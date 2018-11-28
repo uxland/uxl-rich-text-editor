@@ -168,22 +168,6 @@ class RichTextEditorElement extends ElementMixin(ThemableMixin(PolymerElement)) 
 
           <!-- Underline -->
           <button class="ql-underline" part="toolbar-button toolbar-button-underline" title\$="[[i18n.underline]]"></button>
-
-          <!-- Strike -->
-          <button class="ql-strike" part="toolbar-button toolbar-button-strike" title\$="[[i18n.strike]]"></button>
-        </span>
-
-        <span part="toolbar-group">
-          <!-- Header buttons -->
-          <button type="button" class="ql-header" value="1" part="toolbar-button toolbar-button-h1" title\$="[[i18n.h1]]"></button>
-          <button type="button" class="ql-header" value="2" part="toolbar-button toolbar-button-h2" title\$="[[i18n.h2]]"></button>
-          <button type="button" class="ql-header" value="3" part="toolbar-button toolbar-button-h3" title\$="[[i18n.h3]]"></button>
-        </span>
-
-        <span part="toolbar-group">
-          <!-- Subscript and superscript -->
-          <button class="ql-script" value="sub" part="toolbar-button toolbar-button-subscript" title\$="[[i18n.subscript]]"></button>
-          <button class="ql-script" value="super" part="toolbar-button toolbar-button-superscript" title\$="[[i18n.superscript]]"></button>
         </span>
 
         <span part="toolbar-group">
