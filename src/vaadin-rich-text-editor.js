@@ -13,7 +13,6 @@ import '@vaadin/vaadin-button/src/vaadin-button.js';
 import '@vaadin/vaadin-confirm-dialog/src/vaadin-confirm-dialog.js';
 import '@vaadin/vaadin-text-field/src/vaadin-text-field.js';
 import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
-import '@vaadin/vaadin-license-checker/vaadin-license-checker.js';
 import '../vendor/vaadin-quill.js';
 import './vaadin-rich-text-editor-styles.js';
 import './vaadin-rich-text-editor-toolbar-styles.js';

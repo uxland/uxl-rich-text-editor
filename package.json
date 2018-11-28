@@ -27,6 +27,12 @@
   "scripts": {
     "preversion": "gulp version:update"
   },
+  "dependencies": {
+    "@vaadin/vaadin-button": "^2.1.0",
+    "@vaadin/vaadin-component-dev-dependencies": "^1.0.0",
+    "@vaadin/vaadin-confirm-dialog": "^1.1.0",
+    "@vaadin/vaadin-text-field": "^2.2.0"
+  },
   "devDependencies": {
     "@vaadin/vaadin-component-dev-dependencies": "^1.0.0",
     "gulp-iconfont": "^10.0.1"
