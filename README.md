@@ -1,141 +1,66 @@
-[![npm version](https://badgen.net/npm/v/@vaadin/vaadin-rich-text-editor)](https://www.npmjs.com/package/@vaadin/vaadin-rich-text-editor)
-[![Bower version](https://badgen.net/github/release/vaadin/vaadin-rich-text-editor)](https://github.com/vaadin/vaadin-rich-text-editor/releases)
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/vaadin/vaadin-rich-text-editor)
-[![Build Status](https://travis-ci.org/vaadin/vaadin-rich-text-editor.svg?branch=master)](https://travis-ci.org/vaadin/vaadin-rich-text-editor)
-[![Coverage Status](https://coveralls.io/repos/github/vaadin/vaadin-rich-text-editor/badge.svg?branch=master)](https://coveralls.io/github/vaadin/vaadin-rich-text-editor?branch=master)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/web-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
- [![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/vaadinvaadin-rich-text-editor)
-[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/vaadin-rich-text-editor-directory-urlidentifier.svg)](https://vaadin.com/directory/component/vaadinvaadin-rich-text-editor)
-
-
-# &lt;vaadin-rich-text-editor&gt;
-
-[Live Demo ↗](https://cdn.vaadin.com/vaadin-rich-text-editor/1.0.0-alpha6/demo/)
-|
-[API documentation ↗](https://cdn.vaadin.com/vaadin-rich-text-editor/1.0.0-alpha6)
-
-
-[&lt;vaadin-rich-text-editor&gt;](https://vaadin.com/components/vaadin-rich-text-editor) is a Web Component providing rich text editor functionality, part of the [Vaadin components](https://vaadin.com/components).
-
-<!--
-```
-<custom-element-demo>
-  <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="vaadin-rich-text-editor.html">
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
+# UXL Rich Text Editor
+A customizable rich text editor por Polymer 3
 ```html
-<vaadin-rich-text-editor>
+<uxl-rich-text-editor options="...">
   ...
-</vaadin-rich-text-editor>
+</uxl-rich-text-editor>
 ```
-
-[<img src="https://raw.githubusercontent.com/vaadin/vaadin-rich-text-editor/master/screenshot.png" width="200" alt="Screenshot of vaadin-rich-text-editor">](https://vaadin.com/components/vaadin-rich-text-editor)
-
 
 ## Installation
-
-The Vaadin components are distributed as Bower and npm packages.
-Please note that the version range is the same, as the API has not changed.
-You should not mix Bower and npm versions in the same application, though.
-
-Unlike the official Polymer Elements, the converted Polymer 3 compatible Vaadin components
-are only published on npm, not pushed to GitHub repositories.
-
-### Polymer 2 and HTML Imports compatible version
-
-Install `vaadin-rich-text-editor`:
-
-```sh
-bower i vaadin/vaadin-rich-text-editor --save
+Run the following command in your project console
+```
+$ npm i @uxland-admin/uxl-rich-text-editor
 ```
 
-Once installed, import it in your application:
+## Description
+`<uxl-rich-text-editor>` is a component that provides a material design based rich text editor for your project
 
-```html
-<link rel="import" href="bower_components/vaadin-rich-text-editor/vaadin-rich-text-editor.html">
+### Usage
+The component provides a default toolbar but it can be customizable through the `option` variable:
 ```
-### Polymer 3 and ES Modules compatible version
-
-
-Install `vaadin-rich-text-editor`:
-
-```sh
-npm i @vaadin/vaadin-rich-text-editor --save
+<uxl-rich-text-editor options="bold,italic, ..."><
 ```
+### Available `<uxl-rich-text-editor>` options:
+`bold`: Adds the bold button
 
-Once installed, import it in your application:
+`italic`: Adds the italic button
 
-```js
-import '@vaadin/vaadin-rich-text-editor/vaadin-rich-text-editor.js';
-```
+`underline`: Adds the underline button
 
-## Getting started
+`strike`: Adds the strike button
 
-Vaadin components use the Lumo theme by default.
+`blockquote`: Adds the block quote button
 
-To use the Material theme, import the correspondent file from the `theme/material` folder.
+`code-block`: Adds the code block button
 
-## Entry points
+`image`: Adds upload image button
 
-- The component with the Lumo theme:
+`video`: Adds upload video button
 
-  `theme/lumo/vaadin-rich-text-editor.html`
+`formula`: Adds upload formula button
 
-- The component with the Material theme:
+`link`: Adds upload link button
 
-  `theme/material/vaadin-rich-text-editor.html`
+`color`: Adds a dropdown list with available font colors 
 
-- Alias for `theme/lumo/vaadin-rich-text-editor.html`:
+`background`: Adds a dropdown list with available background colors
 
-  `vaadin-rich-text-editor.html`
+`ol`: Adds the ordened list button
 
+`ul`: Adds the unordened list button
 
-## Running demos and tests in browser
+`subindex`: Adds the subindex button
 
-1. Fork the `vaadin-rich-text-editor` repository and clone it locally.
+`superindex`: Adds the superindex button
 
-1. Make sure you have [npm](https://www.npmjs.com/) installed.
+`outdent`: Adds the outdent button
 
-1. When in the `vaadin-rich-text-editor` directory, run `npm install` and then `bower install` to install dependencies.
+`indent`: Adds the indent button
 
-1. Make sure you have [polymer-cli](https://www.npmjs.com/package/polymer-cli) installed globally: `npm i -g polymer-cli`.
+`size`: Adds a dropdown list with the available font sizes
 
-1. Run `polymer serve --open`, browser will automatically open the component API documentation.
+`header`: Adds a dropdown list with the header sizes
 
-1. You can also open demo or in-browser tests by adding **demo** or **test** to the URL, for example:
+`font`: Adds a dropdown list with the available fonts
 
-  - http://127.0.0.1:8080/components/vaadin-rich-text-editor/demo
-  - http://127.0.0.1:8080/components/vaadin-rich-text-editor/test
-
-
-## Running tests from the command line
-
-1. When in the `vaadin-rich-text-editor` directory, run `polymer test`
-
-
-## Following the coding style
-
-We are using [ESLint](http://eslint.org/) for linting JavaScript code. You can check if your code is following our standards by running `gulp lint`, which will automatically lint all `.js` files as well as JavaScript snippets inside `.html` files.
-
-
-## Big Thanks
-
-Cross-browser Testing Platform and Open Source <3 Provided by [Sauce Labs](https://saucelabs.com).
-
-
-## Contributing
-
-  To contribute to the component, please read [the guideline](https://github.com/vaadin/vaadin-core/blob/master/CONTRIBUTING.md) first.
-
-
-## License
-
-Commercial Vaadin Add-on License version 3 (CVALv3). For license terms, see LICENSE.
-
-Vaadin collects development time usage statistics to improve this product. For details and to opt-out, see https://github.com/vaadin/vaadin-usage-statistics.
+`align`: Adds the align button
