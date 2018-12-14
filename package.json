@@ -39,12 +39,8 @@
     "wc-sass-render": "^1.1.1"
   },
   "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.5",
-    "@uxland-admin/ics-process": "^1.1.30",
     "@webcomponents/custom-elements": "^1.2.0",
     "@webcomponents/webcomponentsjs": "^2.2.0",
-    "chai": "^4.2.0",
     "dts-generator": "^2.1.0",
     "gulp": "^4.0.0",
     "gulp-run": "^1.7.1",
