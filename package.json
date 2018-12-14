@@ -35,8 +35,12 @@
     "compile-sass": "sass-render ./src/**/*.scss --suffix .ts"
   },
   "dependencies": {
+    "@polymer/lit-element": "^0.6.5",
+    "@uxland/uxl-polymer2-ts": "^1.0.11",
+    "@uxland/uxl-prism": "^1.0.8",
     "quill": "^1.3.6",
-    "wc-sass-render": "^1.1.1"
+    "wc-sass-render": "^1.1.1",
+    "tslib": "^1.9.3"
   },
   "devDependencies": {
     "@webcomponents/custom-elements": "^1.2.0",
