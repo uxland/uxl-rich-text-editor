@@ -34,7 +34,7 @@
     "semantic-release": "semantic-release",
     "enable-sass-watcher": "sass-render ./src/**/*.scss -w --suffix .js",
     "compile-sass": "sass-render ./src/**/*.scss --suffix .ts",
-    "compile-ts": "tsc && cd ./src && tsc",
+    "compile-ts": "tsc -p tsconfig.json",
     "polymer:serve": "polymer serve"
   },
   "dependencies": {
