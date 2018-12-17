@@ -11,8 +11,8 @@ addons:
   chrome: stable
 before_script:
   - npm i -g polymer-cli
-  - npx compile-sass
-  - npx compile-ts
+  - npm run compile-sass
+  - npm run compile-ts
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
