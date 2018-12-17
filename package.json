@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/uxland/uxl-rich-text-editor",
   "files": [
-    "vaadin-*.js",
+    "uxl-rich-text-editor.ts",
     "src",
     "vendor",
     "theme"
