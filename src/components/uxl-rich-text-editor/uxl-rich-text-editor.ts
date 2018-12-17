@@ -12,6 +12,7 @@ export class UxlRichTextEditor extends Locale(LitElement) {
     }
 
     firstUpdated() {
+        // @ts-ignore
         let quill = new Quill(this.shadowRoot.querySelector('#uxl-rte'), this._getOptions());
     }
 
