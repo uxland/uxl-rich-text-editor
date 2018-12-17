@@ -18,8 +18,35 @@ export class UxlRichTextEditor extends Locale(LitElement) {
     @property()
     options: string;
 
+    @property()
+    availableOptions: string[] = [
+        'bold',
+        'italic',
+        'underline',
+        'strike',
+        'blockquote',
+        'code-block',
+        'image',
+        'video',
+        'link',
+        'color',
+        'background',
+        'ol',
+        'ul',
+        'subindex',
+        'superindex',
+        'outdent',
+        'indent',
+        'size',
+        'header',
+        'font',
+        'align',
+        'clear'
+    ];
+
     _getOptions() {
         let toolbarOptions = [];
+        let availableOpts = this.availableOptions;
         if (this.options === undefined || this.options.length == 0) {
             toolbarOptions = [
                 ['bold', 'italic', 'underline', 'strike'],
@@ -36,12 +63,15 @@ export class UxlRichTextEditor extends Locale(LitElement) {
                 [{ 'align': [] }],
                 ['image'],
                 ['video'],
-                ['formula'],
                 ['clean']
             ];
         }
         else {
             toolbarOptions = this.options.split(',');
+            toolbarOptions.map(function (option) {
+                if(availableOpts.indexOf(option) <= -1)
+                    toolbarOptions.splice(toolbarOptions.indexOf(option),1)
+            });
             toolbarOptions = toolbarOptions.map(function(option) {
                 if (option == 'color')
                     return {color:[]};
@@ -77,7 +107,8 @@ export class UxlRichTextEditor extends Locale(LitElement) {
 
         let options = {
             modules: {
-                toolbar: toolbarOptions
+                toolbar: toolbarOptions,
+                history,
             },
             theme: 'snow'
         };

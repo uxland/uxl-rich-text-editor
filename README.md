@@ -37,8 +37,6 @@ The component provides a default toolbar but it can be customizable through the 
 
 `video`: Adds upload video button
 
-`formula`: Adds upload formula button
-
 `link`: Adds upload link button
 
 `color`: Adds a dropdown list with available font colors 
