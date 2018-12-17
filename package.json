@@ -21,6 +21,7 @@
   "files": [
     "uxl-rich-text-editor.js",
     "src",
+    "*.js",
     "vendor",
     "theme"
   ],

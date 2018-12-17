@@ -18,5 +18,4 @@ deploy:
   provider: script
   skip_cleanup: true
   script:
-    - npx tsc -p tsconfig.json
     - npx semantic-release
