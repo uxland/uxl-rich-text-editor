@@ -11,6 +11,7 @@ addons:
   chrome: stable
 before_script:
   - npm i -g polymer-cli
+  - tsc -p tsconfig.json
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
