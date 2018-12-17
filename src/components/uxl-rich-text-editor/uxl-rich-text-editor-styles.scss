@@ -1,3 +1,10 @@
+uxl-rich-text-editor {
+  height: calc(100% - 65px);
+}
+.container {
+  width: 100%;
+  height: 100%;
+}
 .ql-container {
   box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
@@ -5,6 +12,7 @@
   height: 100%;
   margin: 0px;
   position: relative;
+  color: black;
 }
 .ql-container.ql-disabled .ql-tooltip {
   visibility: hidden;
