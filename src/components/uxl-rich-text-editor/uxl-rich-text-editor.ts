@@ -1,9 +1,9 @@
 import {html, LitElement} from '@polymer/lit-element/lit-element';
 import {property, customElement, listen} from "@uxland/uxl-polymer2-ts";
 import {template as TEMPLATE} from './uxl-rich-text-editor-template';
-import CSS from "./uxl-rich-text-editor-styles";
+import CSS from "./uxl-rich-text-editor-styles.js";
 import {Locale} from "@uxland/uxl-prism/mixins/localization";
-import "../../../node_modules/quill/dist/quill";
+import "../../../node_modules/quill/dist/quill.js";
 
 @customElement('uxl-rich-text-editor')
 export class UxlRichTextEditor extends Locale(LitElement) {

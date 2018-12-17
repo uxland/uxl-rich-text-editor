@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/uxland/uxl-rich-text-editor",
   "files": [
-    "uxl-rich-text-editor.ts",
+    "uxl-rich-text-editor.js",
     "src",
     "vendor",
     "theme"
@@ -32,7 +32,9 @@
     "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release",
     "enable-sass-watcher": "sass-render ./src/**/*.scss -w --suffix .js",
-    "compile-sass": "sass-render ./src/**/*.scss --suffix .ts"
+    "compile-sass": "sass-render ./src/**/*.scss --suffix .ts",
+    "compile-ts": "tsc && cd ./src && tsc",
+    "polymer:serve": "polymer serve"
   },
   "dependencies": {
     "@polymer/lit-element": "^0.6.5",
