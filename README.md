@@ -1,5 +1,5 @@
 # UXL Rich Text Editor
-A customizable rich text editor por Polymer 3
+A customizable rich text editor for Polymer 3
 ```html
 <uxl-rich-text-editor options="...">
   ...
