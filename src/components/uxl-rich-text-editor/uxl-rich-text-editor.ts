@@ -14,7 +14,7 @@ export class UxlRichTextEditor extends Locale(LitElement) {
     firstUpdated() {
         let uxlRte = this;
         let quill = new Quill((<any>uxlRte).shadowRoot.querySelector('#uxl-rte'), this._getOptions());
-        quill.on('text-change', function(delta, oldDelta, source) {
+        quill.on('text-change', function() {
             let values = {
                 html: (<any>uxlRte).shadowRoot.querySelector('.ql-editor').innerHTML,
                 plain: quill.getText()
