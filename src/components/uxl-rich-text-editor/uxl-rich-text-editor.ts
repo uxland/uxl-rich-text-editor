@@ -3,7 +3,7 @@ import {property, customElement, listen} from "@uxland/uxl-polymer2-ts";
 import {template as TEMPLATE} from './uxl-rich-text-editor-template';
 import CSS from "./uxl-rich-text-editor-styles.js";
 import {Locale} from "@uxland/uxl-prism/mixins/localization";
-import "quill/dist/quill.js";
+import "quill/dist/quill";
 
 @customElement('uxl-rich-text-editor')
 export class UxlRichTextEditor extends Locale(LitElement) {
@@ -13,14 +13,14 @@ export class UxlRichTextEditor extends Locale(LitElement) {
 
     firstUpdated() {
         let uxlRte = this;
-        let quill = new Quill(uxlRte.shadowRoot.querySelector('#uxl-rte'), this._getOptions());
+        let quill = new Quill((<any>uxlRte).shadowRoot.querySelector('#uxl-rte'), this._getOptions());
         quill.on('text-change', function(delta, oldDelta, source) {
             let values = {
-                html: uxlRte.shadowRoot.querySelector('.ql-editor').innerHTML,
+                html: (<any>uxlRte).shadowRoot.querySelector('.ql-editor').innerHTML,
                 plain: quill.getText()
             };
             let textChanged = new CustomEvent('text-changed', {composed: true, text:values });
-            uxlRte.dispatchEvent(textChanged);
+            (<any>uxlRte).dispatchEvent(textChanged);
         });
     }
 
