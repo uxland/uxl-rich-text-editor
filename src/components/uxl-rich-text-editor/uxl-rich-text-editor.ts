@@ -12,9 +12,20 @@ export class UxlRichTextEditor extends Locale(LitElement) {
     }
 
     firstUpdated() {
-        // @ts-ignore
-        let quill = new Quill(this.shadowRoot.querySelector('#uxl-rte'), this._getOptions());
+        let uxlRte = this;
+        let quill = new Quill(uxlRte.shadowRoot.querySelector('#uxl-rte'), this._getOptions());
+        quill.on('text-change', function(delta, oldDelta, source) {
+            let values = {
+                html: uxlRte.shadowRoot.querySelector('.ql-editor').innerHTML,
+                plain: quill.getText()
+            };
+            let textChanged = new CustomEvent('text-changed', {composed: true, text:values });
+            uxlRte.dispatchEvent(textChanged);
+        });
     }
+
+    @property()
+    quill: string;
 
     @property()
     options: string;
