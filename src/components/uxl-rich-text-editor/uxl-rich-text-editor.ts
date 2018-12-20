@@ -5,6 +5,7 @@ import CSS from "./uxl-rich-text-editor-styles.js";
 import {Locale} from "@uxland/uxl-prism/mixins/localization";
 import "quill/dist/quill.js";
 
+let quill = ''
 @customElement('uxl-rich-text-editor')
 export class UxlRichTextEditor extends Locale(LitElement) {
     render() {
@@ -13,8 +14,8 @@ export class UxlRichTextEditor extends Locale(LitElement) {
 
     firstUpdated() {
         let uxlRte = this;
-        let quill = new Quill((<any>uxlRte).shadowRoot.querySelector('#uxl-rte'), this._getOptions());
-        quill.on('text-change', function() {
+        quill = new Quill((<any>uxlRte).shadowRoot.querySelector('#uxl-rte'), this._getOptions());
+        quill.on('text-change', function(delta, oldDelta, source) {
             let values = {
                 html: (<any>uxlRte).shadowRoot.querySelector('.ql-editor').innerHTML,
                 plain: quill.getText()
@@ -25,7 +26,7 @@ export class UxlRichTextEditor extends Locale(LitElement) {
     }
 
     @property()
-    quill: string;
+    quill: object;
 
     @property()
     options: string;
@@ -120,7 +121,11 @@ export class UxlRichTextEditor extends Locale(LitElement) {
         let options = {
             modules: {
                 toolbar: toolbarOptions,
-                history,
+                history: {
+                    delay: 1000,
+                    maxStack: 50,
+                    userOnly: false
+                }
             },
             theme: 'snow'
         };
