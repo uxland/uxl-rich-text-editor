@@ -1,20 +1,25 @@
 import {html, LitElement} from '@polymer/lit-element/lit-element';
-import {property, customElement, listen} from "@uxland/uxl-polymer2-ts";
+import {property, customElement, listen, item} from "@uxland/uxl-polymer2-ts";
 import {template as TEMPLATE} from './uxl-rich-text-editor-template';
 import CSS from "./uxl-rich-text-editor-styles.js";
 import {Locale} from "@uxland/uxl-prism/mixins/localization";
-import "quill/dist/quill.js";
+// import "quill/dist/quill.js";
+import "uxl-quill/dist/quill.js";
 
-let quill = ''
+let quill = '';
 @customElement('uxl-rich-text-editor')
 export class UxlRichTextEditor extends Locale(LitElement) {
+    constructor(){
+        super();
+    }
+
     render() {
         return html`${CSS} ${TEMPLATE(this)}`;
     }
 
     firstUpdated() {
         let uxlRte = this;
-        quill = new Quill((<any>uxlRte).shadowRoot.querySelector('#uxl-rte'), this._getOptions());
+        quill = new Quill(uxlRte.shadowRoot.querySelector('#uxl-rte'), this._getOptions());
         quill.on('text-change', function(delta, oldDelta, source) {
             let values = {
                 html: (<any>uxlRte).shadowRoot.querySelector('.ql-editor').innerHTML,

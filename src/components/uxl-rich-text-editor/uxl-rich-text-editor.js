@@ -4,11 +4,11 @@ import { property, customElement } from "@uxland/uxl-polymer2-ts";
 import { template as TEMPLATE } from './uxl-rich-text-editor-template';
 import CSS from "./uxl-rich-text-editor-styles.js";
 import { Locale } from "@uxland/uxl-prism/mixins/localization";
-import "quill/dist/quill.js";
+import "uxl-quill/dist/quill.js";
 let quill = '';
 let UxlRichTextEditor = class UxlRichTextEditor extends Locale(LitElement) {
     constructor() {
-        super(...arguments);
+        super();
         this.availableOptions = [
             'bold',
             'italic',
@@ -136,7 +136,8 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", Array)
 ], UxlRichTextEditor.prototype, "availableOptions", void 0);
 UxlRichTextEditor = tslib_1.__decorate([
-    customElement('uxl-rich-text-editor')
+    customElement('uxl-rich-text-editor'),
+    tslib_1.__metadata("design:paramtypes", [])
 ], UxlRichTextEditor);
 export { UxlRichTextEditor };
 //# sourceMappingURL=uxl-rich-text-editor.js.map
