@@ -1,20 +1,26 @@
 import {html, LitElement} from '@polymer/lit-element/lit-element';
-import {property, customElement, listen} from "@uxland/uxl-polymer2-ts";
+import {property, customElement, listen, item} from "@uxland/uxl-polymer2-ts";
 import {template as TEMPLATE} from './uxl-rich-text-editor-template';
 import CSS from "./uxl-rich-text-editor-styles.js";
 import {Locale} from "@uxland/uxl-prism/mixins/localization";
-import "quill/dist/quill.js";
+// import "quill/dist/quill.js";
+import "uxl-quill/dist/quill.js";
 
+let quill = '';
 @customElement('uxl-rich-text-editor')
 export class UxlRichTextEditor extends Locale(LitElement) {
+    constructor(){
+        super();
+    }
+
     render() {
         return html`${CSS} ${TEMPLATE(this)}`;
     }
 
     firstUpdated() {
         let uxlRte = this;
-        let quill = new Quill((<any>uxlRte).shadowRoot.querySelector('#uxl-rte'), this._getOptions());
-        quill.on('text-change', function() {
+        quill = new Quill(uxlRte.shadowRoot.querySelector('#uxl-rte'), this._getOptions());
+        quill.on('text-change', function(delta, oldDelta, source) {
             let values = {
                 html: (<any>uxlRte).shadowRoot.querySelector('.ql-editor').innerHTML,
                 plain: quill.getText()
@@ -25,7 +31,7 @@ export class UxlRichTextEditor extends Locale(LitElement) {
     }
 
     @property()
-    quill: string;
+    quill: object;
 
     @property()
     options: string;
@@ -120,7 +126,11 @@ export class UxlRichTextEditor extends Locale(LitElement) {
         let options = {
             modules: {
                 toolbar: toolbarOptions,
-                history,
+                history: {
+                    delay: 1000,
+                    maxStack: 50,
+                    userOnly: false
+                }
             },
             theme: 'snow'
         };

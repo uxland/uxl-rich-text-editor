@@ -4,10 +4,11 @@ import { property, customElement } from "@uxland/uxl-polymer2-ts";
 import { template as TEMPLATE } from './uxl-rich-text-editor-template';
 import CSS from "./uxl-rich-text-editor-styles.js";
 import { Locale } from "@uxland/uxl-prism/mixins/localization";
-import "quill/dist/quill.js";
+import "uxl-quill/dist/quill.js";
+let quill = '';
 let UxlRichTextEditor = class UxlRichTextEditor extends Locale(LitElement) {
     constructor() {
-        super(...arguments);
+        super();
         this.availableOptions = [
             'bold',
             'italic',
@@ -38,8 +39,8 @@ let UxlRichTextEditor = class UxlRichTextEditor extends Locale(LitElement) {
     }
     firstUpdated() {
         let uxlRte = this;
-        let quill = new Quill(uxlRte.shadowRoot.querySelector('#uxl-rte'), this._getOptions());
-        quill.on('text-change', function () {
+        quill = new Quill(uxlRte.shadowRoot.querySelector('#uxl-rte'), this._getOptions());
+        quill.on('text-change', function (delta, oldDelta, source) {
             let values = {
                 html: uxlRte.shadowRoot.querySelector('.ql-editor').innerHTML,
                 plain: quill.getText()
@@ -111,7 +112,11 @@ let UxlRichTextEditor = class UxlRichTextEditor extends Locale(LitElement) {
         let options = {
             modules: {
                 toolbar: toolbarOptions,
-                history,
+                history: {
+                    delay: 1000,
+                    maxStack: 50,
+                    userOnly: false
+                }
             },
             theme: 'snow'
         };
@@ -120,7 +125,7 @@ let UxlRichTextEditor = class UxlRichTextEditor extends Locale(LitElement) {
 };
 tslib_1.__decorate([
     property(),
-    tslib_1.__metadata("design:type", String)
+    tslib_1.__metadata("design:type", Object)
 ], UxlRichTextEditor.prototype, "quill", void 0);
 tslib_1.__decorate([
     property(),
@@ -131,7 +136,8 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", Array)
 ], UxlRichTextEditor.prototype, "availableOptions", void 0);
 UxlRichTextEditor = tslib_1.__decorate([
-    customElement('uxl-rich-text-editor')
+    customElement('uxl-rich-text-editor'),
+    tslib_1.__metadata("design:paramtypes", [])
 ], UxlRichTextEditor);
 export { UxlRichTextEditor };
 //# sourceMappingURL=uxl-rich-text-editor.js.map
