@@ -66,12 +66,11 @@
 .ql-editor ul {
   padding-left: 1.5em;
 }
-.ql-editor ol > li,
-.ql-editor ul > li {
+.ql-editor ol > li {
   list-style-type: none;
 }
-.ql-editor ul > li::before {
-  content: #{'\2022'};
+.ql-editor ul > li {
+  list-style-type: disc;
 }
 .ql-editor ul[data-checked=true],
 .ql-editor ul[data-checked=false] {

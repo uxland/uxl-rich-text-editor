@@ -42,7 +42,7 @@
     "@uxland/uxl-polymer2-ts": "^1.0.11",
     "@uxland/uxl-prism": "^1.0.8",
     "tslib": "^1.9.3",
-    "uxl-quill": "^1.0.0",
+    "uxl-quill": "^1.0.1",
     "wc-sass-render": "^1.1.1"
   },
   "devDependencies": {
