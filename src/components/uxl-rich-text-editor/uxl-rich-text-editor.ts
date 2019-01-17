@@ -1,10 +1,12 @@
+import { *asQuill } from '@';
 import {html, LitElement} from '@polymer/lit-element/lit-element';
 import {property, customElement, listen, item} from "@uxland/uxl-polymer2-ts";
 import {template as TEMPLATE} from './uxl-rich-text-editor-template';
 import CSS from "./uxl-rich-text-editor-styles.js";
 import {Locale} from "@uxland/uxl-prism/mixins/localization";
 // import "quill/dist/quill.js";
-import "uxl-quill/dist/quill.js";
+// import "uxl-quill/dist/quill.js";
+import * as Quill from "uxl-quill/dist/quill.js"
 
 let quill = '';
 @customElement('uxl-rich-text-editor')
