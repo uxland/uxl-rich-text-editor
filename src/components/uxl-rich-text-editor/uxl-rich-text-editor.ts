@@ -8,6 +8,7 @@ import {Locale} from "@uxland/uxl-prism/mixins/localization";
 // import "uxl-quill/dist/quill.js";
 import * as Quill from "uxl-quill/dist/quill.js"
 
+
 let quill = '';
 @customElement('uxl-rich-text-editor')
 export class UxlRichTextEditor extends Locale(LitElement) {
