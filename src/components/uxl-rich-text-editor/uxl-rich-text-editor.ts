@@ -1,4 +1,3 @@
-import { *asQuill } from '@';
 import {html, LitElement} from '@polymer/lit-element/lit-element';
 import {property, customElement, listen, item} from "@uxland/uxl-polymer2-ts";
 import {template as TEMPLATE} from './uxl-rich-text-editor-template';
