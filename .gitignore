@@ -4,7 +4,6 @@ package-lock.json
 yarn.lock
 coverage
 analysis.json
-.idea/*
 src/**/*.js
 src/**/*.js.map
 dist/*
