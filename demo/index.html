@@ -3,11 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>UXL Rich Text Editor</title>
-    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="settings.js"></script>
-    <script type="module" src="../src/components/uxl-rich-text-editor/uxl-rich-text-editor.js"></script>
+    <script src="/demo/settings.js"></script>
+    <script>
+        document.addEventListener('WebComponentsReady', function componentsReady() {
+            document.removeEventListener('WebComponentsReady', componentsReady, false);
+
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = '<%= htmlWebpackPlugin.files.chunks["main"].entry %>';
+
+            var refScript = document.body.getElementsByTagName('script')[0];
+            refScript.parentNode.insertBefore(script, refScript);
+        }, false);
+    </script>
 </head>
 <body>
-    <uxl-rich-text-editor id="rte-uxl" options="bold,italic,underline,strike,color,background,ol,ul,blockquote,code-block,subindex,superindex,outdent,indent,size,header,font,align,image"></uxl-rich-text-editor>
+    <script defer src="<%= htmlWebpackPlugin.options.paths.webcomponents %>"></script>
 </body>
 </html>
