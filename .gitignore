@@ -1,7 +1,9 @@
-bower_components
 node_modules
 package-lock.json
 yarn.lock
 coverage
 analysis.json
 .idea
+src/**/*.js
+uxl-rich-text-editor.js
+uxl-rich-text-editor.js.map
