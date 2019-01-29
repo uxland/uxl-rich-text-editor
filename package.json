@@ -37,7 +37,8 @@
     "compile-ts": "tsc -p tsconfig.json",
     "polymer:serve": "polymer serve",
     "serve": "webpack-dev-server --hot --inline --progress",
-    "delete:transpiledjs": "npx rimraf src/**/*.js src/**/*.js.map demo/index.js demo/index.js.map"
+    "delete:transpiledjs": "npx rimraf src/**/*.js src/**/*.js.map demo/index.js demo/index.js.map",
+    "dist": "echo done && gulp generate-d-ts"
   },
   "dependencies": {
     "@polymer/lit-element": "^0.6.5",

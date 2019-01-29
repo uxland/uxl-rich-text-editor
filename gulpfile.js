@@ -1,3 +1,10 @@
+var gulp = require('gulp');
+
+// all gulp tasks are located in the ./build/tasks directory
+// gulp configuration is in files in ./build directory
+require('require-dir')('gulp/tasks');
+
+/*
 'use strict';
 
 const gulp = require('gulp');
@@ -20,7 +27,7 @@ gulp.task('lint', ['lint:js', 'lint:html', 'lint:css']);
 gulp.task('lint:js', function() {
   return gulp.src([
     '*.js',
-    'test/**/*.js'
+    'test/!**!/!*.js'
   ])
     .pipe(eslint())
     .pipe(eslint.format())
@@ -30,9 +37,9 @@ gulp.task('lint:js', function() {
 gulp.task('lint:html', function() {
   return gulp.src([
     '*.html',
-    'src/**/*.html',
-    'demo/**/*.html',
-    'test/**/*.html'
+    'src/!**!/!*.html',
+    'demo/!**!/!*.html',
+    'test/!**!/!*.html'
   ])
     .pipe(htmlExtract({
       sel: 'script, code-example code',
@@ -47,10 +54,10 @@ gulp.task('lint:html', function() {
 gulp.task('lint:css', function() {
   return gulp.src([
     '*.html',
-    'src/**/*.html',
-    'demo/**/*.html',
-    'theme/**/*.html',
-    'test/**/*.html'
+    'src/!**!/!*.html',
+    'demo/!**!/!*.html',
+    'theme/!**!/!*.html',
+    'test/!**!/!*.html'
   ])
     .pipe(htmlExtract({
       sel: 'style'
@@ -63,11 +70,11 @@ gulp.task('lint:css', function() {
 });
 gulp.task('version:check', function() {
   const expectedVersion = new RegExp('^' + require('./package.json').version + '$');
-  return gulp.src(['src/*.html'])
+  return gulp.src(['src/!*.html'])
     .pipe(htmlExtract({sel: 'script'}))
-    .pipe(find(/static get version.*\n.*/))
+    .pipe(find(/static get version.*\n.*!/))
     .pipe(clip()) // Remove non-matching files
-    .pipe(replace(/.*\n.*return '(.*)'.*/, '$1'))
+    .pipe(replace(/.*\n.*return '(.*)'.*!/, '$1'))
     .pipe(grepContents(expectedVersion, {invert: true}))
     .pipe(expect({reportUnexpected: true}, []));
 });
@@ -83,7 +90,7 @@ gulp.task('version:update', ['version:check'], function() {
   if (!newversion) {
     throw new 'New version must be given as a npm_package_version environment variable.';
   }
-  return gulp.src(['src/*.html'])
+  return gulp.src(['src/!*.html'])
     .pipe(replace(oldversion, newversion))
     .pipe(gulp.dest('src'))
     .pipe(git.add());
@@ -94,7 +101,7 @@ gulp.task('icons', function() {
   const fontName = 'vaadin-rte-icons';
   const fileName = 'vaadin-rich-text-editor-icons';
 
-  gulp.src('icons/*.svg')
+  gulp.src('icons/!*.svg')
     .pipe(iconfont({
       fontName: fileName,
       formats: ['woff'],
@@ -170,3 +177,4 @@ gulp.task('icons', function() {
       });
     });
 });
+*/
