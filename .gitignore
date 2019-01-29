@@ -4,6 +4,3 @@ yarn.lock
 coverage
 analysis.json
 .idea
-src/**/*.js
-uxl-rich-text-editor.js
-uxl-rich-text-editor.js.map
