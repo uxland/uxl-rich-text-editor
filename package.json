@@ -18,13 +18,6 @@
     "url": "https://github.com/uxland/uxl-rich-text-editor/issues"
   },
   "homepage": "https://github.com/uxland/uxl-rich-text-editor",
-  "files": [
-    "uxl-rich-text-editor.js",
-    "*.js",
-    "src/*/*/.js",
-    "vendor",
-    "theme"
-  ],
   "scripts": {
     "deps:delete": "npx rimraf node_modules/ package-lock.json",
     "deps:install": "npm install",
