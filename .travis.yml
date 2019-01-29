@@ -11,6 +11,10 @@ addons:
   chrome: stable
 before_script:
   - npm i -g polymer-cli
+script:
+  - npm run build
+after_success:
+  - gulp dist
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
