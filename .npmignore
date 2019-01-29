@@ -1,0 +1,8 @@
+demo/
+test/
+mochawesome-report/
+polymer.json
+tsconfig.json
+gulp/
+gulpfile.js
+webpack.config.js
