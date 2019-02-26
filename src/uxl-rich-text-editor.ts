@@ -1,28 +1,30 @@
-import {html, LitElement} from '@polymer/lit-element/lit-element';
-import {property, customElement, listen, item} from "@uxland/uxl-polymer2-ts";
-import {template as TEMPLATE} from './uxl-rich-text-editor-template';
-import * as styles from "./uxl-rich-text-editor-styles.scss";
-import {Locale} from "@uxland/uxl-prism/mixins/localization";
+import {html, LitElement, css, unsafeCSS, property, customElement} from 'lit-element';
+import {template} from './template';
+import * as styles from "./styles.scss";
 import * as Quill from "uxl-quill/dist/quill";
 
 let quill = '';
 @customElement('uxl-rich-text-editor')
-export class UxlRichTextEditor extends Locale(LitElement) {
+export class UxlRichTextEditor extends LitElement {
     constructor(){
         super();
     }
 
     render() {
-        return html`<custom-style><style>${styles}</style></custom-style> ${TEMPLATE(this)}`;
+        return html`${template(this)}`;
+    }
+
+    static get styles() {
+        return css`${unsafeCSS(styles)}`;
     }
 
     firstUpdated() {
         let uxlRte = this;
         quill = new Quill(uxlRte.shadowRoot.querySelector('#uxl-rte'), this._getOptions());
-        quill.on('text-change', function(delta, oldDelta, source) {
+        (<any>quill).on('text-change', function(delta, oldDelta, source) {
             let values = {
                 html: (<any>uxlRte).shadowRoot.querySelector('.ql-editor').innerHTML,
-                plain: quill.getText()
+                plain: (<any>quill).getText()
             };
             let textChanged = new CustomEvent('text-changed', {composed: true, text:values });
             (<any>uxlRte).dispatchEvent(textChanged);

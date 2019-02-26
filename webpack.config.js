@@ -119,7 +119,7 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
-                include: join(__dirname, 'src/components'),
+                include: join(__dirname, 'src'),
                 use: [
                     {
                         loader: 'to-string-loader',
@@ -233,5 +233,3 @@ module.exports = {
         extensions: [".ts", ".tsx", ".js"]
     }
 };
-
-

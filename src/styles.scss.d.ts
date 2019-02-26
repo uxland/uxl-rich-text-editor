@@ -1,4 +1,4 @@
-export interface IUxlRichTextEditorStylesScss {
+export interface IStylesScss {
   'container': string;
   'ql-container': string;
   'ql-disabled': string;
@@ -76,4 +76,4 @@ export interface IUxlRichTextEditorStylesScss {
   'ql-editing': string;
 }
 
-export const locals: IUxlRichTextEditorStylesScss;
+export const locals: IStylesScss;

@@ -1,8 +1,12 @@
-demo/
 test/
 mochawesome-report/
 polymer.json
 tsconfig.json
-gulp/
-gulpfile.js
+node_modules/
+.idea/
+demo/
+wdio.conf.js
 webpack.config.js
+.travis.yml
+README.md
+src/

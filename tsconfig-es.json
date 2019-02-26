@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
     "module": "esnext",
-    "target": "es2017",
-    "sourceMap": false,
-    "declaration": false,
-    "outDir": "../",
-    "rootDir": "../src",
+    "target": "esnext",
+    "rootDir": "./src",
+    "outDir": ".",
+    "sourceMap": true,
+    "declaration": true,
     "noImplicitAny": false,
     "removeComments": true,
+    "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
@@ -16,7 +17,7 @@
     "noResolve": false,
     "strict": false,
     "suppressExcessPropertyErrors": true,
-    "lib": ["es2017", "dom"],
+    "lib": ["es2018", "dom"],
     "baseUrl": ".",
     "paths": {
       "tslib": [
@@ -24,8 +25,12 @@
       ]
     }
   },
-  "include": ["../src"],
+  "include": [
+    "src/**/*"
+  ],
   "exclude": [
-    "node_modules", "test"
+    "node_modules",
+    "es",
+    "test"
   ]
 }
