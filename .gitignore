@@ -10,3 +10,5 @@ mochawesome-report/
 allure-report/
 allure-results/
 errorShots/
+es/
+lib/
