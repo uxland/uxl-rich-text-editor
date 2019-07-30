@@ -1,7 +1,5 @@
-dev/
 node_modules/
 .idea/
-dist/
 src/**/*.js
 src/**/*.js.map
 test/**/*.js
@@ -10,3 +8,5 @@ mochawesome-report/
 allure-report/
 allure-results/
 errorShots/
+es/
+lib/

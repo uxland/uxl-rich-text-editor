@@ -2,7 +2,9 @@
   "name": "@uxland/uxl-rich-text-editor",
   "version": "0.0.0-development",
   "description": "uxl-rich-text-editor",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/uxland/uxl-rich-text-editor.git"
@@ -19,18 +21,28 @@
   },
   "homepage": "https://github.com/uxland/uxl-rich-text-editor",
   "scripts": {
-    "deps:delete": "npx rimraf node_modules/ package-lock.json",
+    "deps:delete": "npx rimraf node_modules package-lock.json",
     "deps:install": "npm install",
     "deps:refresh": "npm run deps:delete && npm run deps:install",
-    "build:es": "tsc -p tsconfig-es.json",
-    "build:cjs": "tsc -p tsconfig-cjs.json",
+    "build:es": "tsc -p tsconfig.build.json --outDir es  ",
+    "build:cjs": "tsc -p tsconfig.build.json --outDir lib --module commonjs --declaration",
     "build": "npm run build:es && npm run build:cjs",
-    "dist:copy-resources": "cpx \"src/**/*.{gif,png,jpg,jpeg,ico,pdf,svg,scss,d.ts}\" .",
-    "dist": "npm run dist:copy-resources && npm run build",
+    "test:ui:watch": "nodemon --watch test --watch src -x \"polymer test --config-file wct.config.json\"",
+    "test:ui": "polymer test --config-file wct.config.json",
+    "test:unit": "node --experimental-modules node_modules/mocha/bin/_mocha -r esm --ui tdd --reporter mochawesome test/unit",
+    "tdd": "node --experimental-modules node_modules/mocha/bin/_mocha --watch -r esm --ui tdd --reporter mochawesome test/unit",
+    "dist:copy-resources:es": "cpx \"src/**/*.{gif,png,jpg,jpeg,ico,pdf,svg,scss,d.ts}\" ./es",
+    "dist:copy-resources:lib": "cpx \"src/**/*.{gif,png,jpg,jpeg,ico,pdf,svg,scss,d.ts}\" ./lib",
+    "dist": "npm run dist:copy-resources:es && npm run dist:copy-resources:lib && npm run build",
     "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release",
-    "polymer:serve": "polymer serve",
-    "serve": "webpack-dev-server --hot --inline --progress"
+    "semantic-release:local": "npm run dist && semantic-release --no-ci --debug",
+    "postsemantic-release:local": "git checkout -- package*",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "webpack:build": "webpack --progress",
+    "webpack:build:prod": "webpack --env.NODE_ENV=production --optimize-minimize --progress",
+    "serve": "webpack-dev-server --hot --inline --progress",
+    "delete:transpiledjs": "npx rimraf src/**/*.js src/**/*.js.map demo/index.js demo/index.js.map"
   },
   "dependencies": {
     "lit-element": "^2.0.1",
@@ -59,6 +71,7 @@
     "mocha": "^5.2.0",
     "node-sass": "^4.11.0",
     "require-dir": "^0.3.2",
+    "semantic-release": "^16.0.0-beta.22",
     "rimraf": "^2.6.3",
     "sass": "^1.16.1",
     "sass-loader": "^7.1.0",
@@ -76,8 +89,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "release": {
-    "branch": "master"
   }
 }
