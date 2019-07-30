@@ -10,3 +10,4 @@ webpack.config.js
 .travis.yml
 README.md
 src/
+tsconfig.build.json
