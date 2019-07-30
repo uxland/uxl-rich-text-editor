@@ -1,7 +1,7 @@
-import { html, LitElement, css, unsafeCSS, property, customElement } from 'lit-element';
-import { template } from './template';
+import { css, customElement, html, LitElement, property, unsafeCSS } from 'lit-element';
+import Quill from 'uxl-quill/dist/quill';
 import styles from './styles.scss';
-import * as Quill from 'uxl-quill/dist/quill';
+import { template } from './template';
 
 let quill = '';
 @customElement('uxl-rich-text-editor')
