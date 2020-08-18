@@ -1,9 +1,12 @@
 import { css, customElement, html, LitElement, property, unsafeCSS } from 'lit-element';
 import Quill from 'uxl-quill/dist/quill';
+//@ts-ignore
+import undo_icon from 'uxl-quill/assets/icons/undo.svg';
+//@ts-ignore
+import redo_icon from 'uxl-quill/assets/icons/redo.svg';
 import styles from './styles.scss';
 import { template } from './template';
 
-let quill = '';
 @customElement('uxl-rich-text-editor')
 export class UxlRichTextEditor extends LitElement {
   constructor() {
@@ -11,9 +14,7 @@ export class UxlRichTextEditor extends LitElement {
   }
 
   render() {
-    return html`
-      ${template(this)}
-    `;
+    return html` ${template(this)} `;
   }
 
   static get styles() {
@@ -24,11 +25,11 @@ export class UxlRichTextEditor extends LitElement {
 
   firstUpdated() {
     let uxlRte = this;
-    quill = new Quill(uxlRte.shadowRoot.querySelector('#uxl-rte'), this._getOptions());
-    (<any>quill).on('text-change', function(delta, oldDelta, source) {
+    this.quill = new Quill(uxlRte.shadowRoot.querySelector('#uxl-rte'), this._getOptions());
+    (<any>this.quill).on('text-change', function (delta, oldDelta, source) {
       let values = {
         html: (<any>uxlRte).shadowRoot.querySelector('.ql-editor').innerHTML,
-        plain: (<any>quill).getText()
+        plain: (<any>uxlRte.quill).getText(),
       };
       let textChanged = new CustomEvent('text-changed', { composed: true, text: values });
       (<any>uxlRte).dispatchEvent(textChanged);
@@ -36,7 +37,7 @@ export class UxlRichTextEditor extends LitElement {
   }
 
   @property()
-  quill: object;
+  quill: any;
 
   @property()
   options: string;
@@ -64,7 +65,9 @@ export class UxlRichTextEditor extends LitElement {
     'header',
     'font',
     'align',
-    'clear'
+    'clear',
+    'undo',
+    'redo',
   ];
 
   _getOptions() {
@@ -86,14 +89,15 @@ export class UxlRichTextEditor extends LitElement {
         [{ align: [] }],
         ['image'],
         ['video'],
-        ['clean']
+        ['clean'],
       ];
     } else {
+      console.log(this.options);
       toolbarOptions = this.options.split(',');
-      toolbarOptions.map(function(option) {
+      toolbarOptions.map(function (option) {
         if (availableOpts.indexOf(option) <= -1) toolbarOptions.splice(toolbarOptions.indexOf(option), 1);
       });
-      toolbarOptions = toolbarOptions.map(function(option) {
+      toolbarOptions = toolbarOptions.map(function (option) {
         if (option == 'color') return { color: [] };
         else if (option == 'ol') return { list: 'ordered' };
         else if (option == 'ul') return { list: 'bullet' };
@@ -106,23 +110,43 @@ export class UxlRichTextEditor extends LitElement {
         else if (option == 'background') return { background: [] };
         else if (option == 'font') return { font: [] };
         else if (option == 'align') return { align: [] };
-        else return option;
+        else if (option == 'undo') {
+          console.log('undo active');
+          return { undo: undo_icon };
+        } else if (option == 'redo') {
+          console.log('redo active');
+          return { redo: redo_icon };
+        } else return option;
       });
       if (toolbarOptions.indexOf('clean') < 0) {
         toolbarOptions.push('clean');
       }
     }
 
+    let icons = Quill.import('ui/icons');
+    icons['undo'] = undo_icon;
+    icons['redo'] = redo_icon;
+
     let options = {
       modules: {
-        toolbar: toolbarOptions,
+        toolbar: {
+          container: toolbarOptions,
+          handlers: {
+            redo() {
+              this.quill.history.redo();
+            },
+            undo() {
+              this.quill.history.undo();
+            },
+          },
+        },
         history: {
           delay: 1000,
           maxStack: 50,
-          userOnly: false
-        }
+          userOnly: false,
+        },
       },
-      theme: 'snow'
+      theme: 'snow',
     };
     return options;
   }
