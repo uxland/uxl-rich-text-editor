@@ -33,6 +33,7 @@ export class UxlRichTextEditor extends LitElement {
       };
       let textChanged = new CustomEvent('text-changed', { composed: true, text: values });
       (<any>uxlRte).dispatchEvent(textChanged);
+      console.log();
     });
   }
 
