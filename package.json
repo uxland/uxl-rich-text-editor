@@ -14,7 +14,7 @@
     "web-component",
     "polymer"
   ],
-  "author": "UXLand",
+  "author": "UXLand <dev@uxland.es> (http://www.uxland.es)",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/uxland/uxl-rich-text-editor/issues"
