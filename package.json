@@ -41,8 +41,7 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "webpack:build": "webpack --progress",
     "webpack:build:prod": "webpack --env.NODE_ENV=production --optimize-minimize --progress",
-    "serve": "webpack-dev-server --hot --inline --progress",
-    "delete:transpiledjs": "npx rimraf src/**/*.js src/**/*.js.map demo/index.js demo/index.js.map"
+    "serve": "webpack-dev-server --hot --inline --progress"
   },
   "dependencies": {
     "lit-element": "^2.3.1",
