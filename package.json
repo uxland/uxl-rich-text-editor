@@ -1,6 +1,6 @@
 {
   "name": "@uxland/uxl-rich-text-editor",
-  "version": "0.0.0-development",
+  "version": "3.1.5",
   "description": "uxl-rich-text-editor",
   "main": "lib/index.js",
   "module": "es/index.js",
