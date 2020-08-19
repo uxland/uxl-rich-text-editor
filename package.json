@@ -1,7 +1,7 @@
 {
-  "name": "@uxland/uxl-rich-text-editor",
+  "name": "@uxland/uxl-rich-text-input",
   "version": "0.0.0-development",
-  "description": "uxl-rich-text-editor",
+  "description": "uxl-rich-text-input",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
