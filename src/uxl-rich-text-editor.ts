@@ -33,7 +33,6 @@ export class UxlRichTextEditor extends LitElement {
       };
       let textChanged = new CustomEvent('text-changed', { composed: true, text: values });
       (<any>uxlRte).dispatchEvent(textChanged);
-      console.log();
     });
   }
 
@@ -56,8 +55,8 @@ export class UxlRichTextEditor extends LitElement {
     'link',
     'color',
     'background',
-    'ol',
-    'ul',
+    /* 'ol',
+    'ul', */
     'subindex',
     'superindex',
     'outdent',
@@ -79,7 +78,7 @@ export class UxlRichTextEditor extends LitElement {
         ['bold', 'italic', 'underline', 'strike'],
         ['blockquote', 'code-block'],
         [{ header: 1 }, { header: 2 }],
-        [{ list: 'ordered' }, { list: 'bullet' }],
+        /* [{ list: 'ordered' }, { list: 'bullet' }], */
         [{ script: 'sub' }, { script: 'super' }],
         [{ indent: '-1' }, { indent: '+1' }],
         [{ direction: 'rtl' }],
@@ -93,16 +92,17 @@ export class UxlRichTextEditor extends LitElement {
         ['clean'],
       ];
     } else {
-      console.log(this.options);
       toolbarOptions = this.options.split(',');
       toolbarOptions.map(function (option) {
         if (availableOpts.indexOf(option) <= -1) toolbarOptions.splice(toolbarOptions.indexOf(option), 1);
       });
       toolbarOptions = toolbarOptions.map(function (option) {
         if (option == 'color') return { color: [] };
-        else if (option == 'ol') return { list: 'ordered' };
-        else if (option == 'ul') return { list: 'bullet' };
-        else if (option == 'subindex') return { script: 'sub' };
+        /* else if (option == 'ol') return { list: 'ordered' };
+        else if (option == 'ul') return { list: 'bullet' }; */ else if (
+          option == 'subindex'
+        )
+          return { script: 'sub' };
         else if (option == 'superindex') return { script: 'super' };
         else if (option == 'outdent') return { indent: '-1' };
         else if (option == 'indent') return { indent: '+1' };
@@ -111,13 +111,9 @@ export class UxlRichTextEditor extends LitElement {
         else if (option == 'background') return { background: [] };
         else if (option == 'font') return { font: [] };
         else if (option == 'align') return { align: [] };
-        else if (option == 'undo') {
-          console.log('undo active');
-          return { undo: undo_icon };
-        } else if (option == 'redo') {
-          console.log('redo active');
-          return { redo: redo_icon };
-        } else return option;
+        else if (option == 'undo') return { undo: undo_icon };
+        else if (option == 'redo') return { redo: redo_icon };
+        else return option;
       });
       if (toolbarOptions.indexOf('clean') < 0) {
         toolbarOptions.push('clean');
@@ -147,6 +143,29 @@ export class UxlRichTextEditor extends LitElement {
           userOnly: false,
         },
       },
+      formats: [
+        'background',
+        'bold',
+        'color',
+        'font',
+        'code',
+        'italic',
+        'link',
+        'size',
+        'strike',
+        'script',
+        'underline',
+        'blockquote',
+        'header',
+        'indent',
+        // "list", <-- commented-out to suppress auto bullets
+        'align',
+        'direction',
+        'code-block',
+        'formula',
+        'image',
+        'video',
+      ],
       theme: 'snow',
     };
     return options;
