@@ -27,10 +27,12 @@ export class UxlRichTextEditor extends LitElement {
     let uxlRte = this;
     this.quill = new Quill(uxlRte.shadowRoot.querySelector('#uxl-rte'), this._getOptions());
     (<any>this.quill).on('text-change', function (delta, oldDelta, source) {
+      let plainValue = (<any>uxlRte.quill).getText();
       let values = {
         html: (<any>uxlRte).shadowRoot.querySelector('.ql-editor').innerHTML,
-        plain: (<any>uxlRte.quill).getText(),
+        plain: plainValue,
       };
+
       let textChanged = new CustomEvent('text-changed', { composed: true, text: values });
       (<any>uxlRte).dispatchEvent(textChanged);
     });
@@ -55,8 +57,8 @@ export class UxlRichTextEditor extends LitElement {
     'link',
     'color',
     'background',
-    /* 'ol',
-    'ul', */
+    'ol',
+    'ul',
     'subindex',
     'superindex',
     'outdent',
@@ -78,7 +80,7 @@ export class UxlRichTextEditor extends LitElement {
         ['bold', 'italic', 'underline', 'strike'],
         ['blockquote', 'code-block'],
         [{ header: 1 }, { header: 2 }],
-        /* [{ list: 'ordered' }, { list: 'bullet' }], */
+        [{ list: 'ordered' }, { list: 'bullet' }],
         [{ script: 'sub' }, { script: 'super' }],
         [{ indent: '-1' }, { indent: '+1' }],
         [{ direction: 'rtl' }],
@@ -98,11 +100,9 @@ export class UxlRichTextEditor extends LitElement {
       });
       toolbarOptions = toolbarOptions.map(function (option) {
         if (option == 'color') return { color: [] };
-        /* else if (option == 'ol') return { list: 'ordered' };
-        else if (option == 'ul') return { list: 'bullet' }; */ else if (
-          option == 'subindex'
-        )
-          return { script: 'sub' };
+        else if (option == 'ol') return { list: 'ordered' };
+        else if (option == 'ul') return { list: 'bullet' };
+        else if (option == 'subindex') return { script: 'sub' };
         else if (option == 'superindex') return { script: 'super' };
         else if (option == 'outdent') return { indent: '-1' };
         else if (option == 'indent') return { indent: '+1' };
@@ -142,30 +142,31 @@ export class UxlRichTextEditor extends LitElement {
           maxStack: 50,
           userOnly: false,
         },
+        keyboard: {
+          bindings: {
+            'list autofill': {
+              key: ' ',
+              shiftKey: null,
+              collapsed: true,
+              format: {
+                'code-block': false,
+                blockquote: false,
+                table: false,
+              },
+              prefix: /^\s*?(\d+\.|-|\*)$/,
+              handler(range, context) {
+                if (this.quill.scroll.query('list') == null) return true;
+                const { length } = context.prefix;
+                const [line, offset] = this.quill.getLine(range.index);
+                if (offset > length) return true;
+                this.quill.insertText(range.index, ' ', Quill.sources.USER);
+                this.quill.setSelection(range.index - length, Quill.sources.SILENT);
+                return false;
+              },
+            },
+          },
+        },
       },
-      formats: [
-        'background',
-        'bold',
-        'color',
-        'font',
-        'code',
-        'italic',
-        'link',
-        'size',
-        'strike',
-        'script',
-        'underline',
-        'blockquote',
-        'header',
-        'indent',
-        // "list", <-- commented-out to suppress auto bullets
-        'align',
-        'direction',
-        'code-block',
-        'formula',
-        'image',
-        'video',
-      ],
       theme: 'snow',
     };
     return options;
