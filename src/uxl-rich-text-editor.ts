@@ -1,9 +1,9 @@
 import { css, customElement, html, LitElement, property, unsafeCSS } from 'lit-element';
-import Quill from 'uxl-quill/dist/quill';
+import Quill from 'quill/dist/quill';
 //@ts-ignore
-import undo_icon from 'uxl-quill/assets/icons/undo.svg';
+import undo_icon from 'quill/assets/icons/undo.svg';
 //@ts-ignore
-import redo_icon from 'uxl-quill/assets/icons/redo.svg';
+import redo_icon from 'quill/assets/icons/redo.svg';
 import styles from './styles.scss';
 import { template } from './template';
 
