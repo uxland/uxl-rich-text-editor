@@ -6,6 +6,9 @@ import undo_icon from 'uxl-quill/assets/icons/undo.svg';
 import redo_icon from 'uxl-quill/assets/icons/redo.svg';
 import styles from './styles.scss';
 import { template } from './template';
+import { fixSpellCheckerIssue } from './utils';
+
+fixSpellCheckerIssue(Quill);
 
 @customElement('uxl-rich-text-editor')
 export class UxlRichTextEditor extends LitElement {
