@@ -75,6 +75,34 @@ export class UxlRichTextEditor extends LitElement {
     'redo',
   ];
 
+  @property()
+  availableFormats: string[] = [
+    'background',
+    'bold',
+    'color',
+    'font',
+    'code',
+    'italic',
+    'link',
+    'size',
+    'strike',
+    'script',
+    'underline',
+    'blockquote',
+    'header',
+    'indent',
+    'list',
+    'align',
+    'direction',
+    'code-block',
+    'formula',
+    'image',
+    'video',
+  ];
+
+  @property()
+  formats: string;
+
   _getOptions() {
     let toolbarOptions = [];
     let availableOpts = this.availableOptions;
@@ -127,6 +155,11 @@ export class UxlRichTextEditor extends LitElement {
     icons['undo'] = undo_icon;
     icons['redo'] = redo_icon;
 
+    let formats = this.availableFormats;
+    if (this.formats) {
+      formats = this.formats.split(',');
+    }
+
     let options = {
       modules: {
         toolbar: {
@@ -171,6 +204,7 @@ export class UxlRichTextEditor extends LitElement {
         },
       },
       theme: 'snow',
+      formats: formats,
     };
     return options;
   }
